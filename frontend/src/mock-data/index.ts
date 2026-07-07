@@ -1,0 +1,10 @@
+﻿export { depots } from "./depots";
+export { drivers } from "./drivers";
+export { vehicles } from "./vehicles";
+export { alerts } from "./alerts";
+export { incidents } from "./incidents";
+export { riskAssessments } from "./riskAssessments";
+export { maintenanceRecords } from "./maintenance";
+export { sensorReadings } from "./sensors";
+export { notifications } from "./notifications";
+export { reports } from "./reports";
