@@ -1,5 +1,6 @@
 ﻿import { useEffect, useState } from "react";
-import { mockFleetService } from "../services/fleetService";
+import { fleetService } from "../services/fleetService";
+import { useAppContext } from "../store/useAppContext";
 import type {
   Alert,
   Depot,
@@ -42,6 +43,7 @@ const initialState: FleetDataState = {
 };
 
 export function useFleetData(): FleetDataState {
+  const { refreshVersion } = useAppContext();
   const [state, setState] = useState<FleetDataState>(initialState);
 
   useEffect(() => {
@@ -60,16 +62,16 @@ export function useFleetData(): FleetDataState {
         notificationResult,
         reportResult,
       ] = await Promise.all([
-        mockFleetService.getVehicles(),
-        mockFleetService.getDrivers(),
-        mockFleetService.getDepots(),
-        mockFleetService.getAlerts(),
-        mockFleetService.getIncidents(),
-        mockFleetService.getMaintenanceRecords(),
-        mockFleetService.getRiskAssessments(),
-        mockFleetService.getSensorReadings(),
-        mockFleetService.getNotifications(),
-        mockFleetService.getReports(),
+        fleetService.getVehicles(),
+        fleetService.getDrivers(),
+        fleetService.getDepots(),
+        fleetService.getAlerts(),
+        fleetService.getIncidents(),
+        fleetService.getMaintenanceRecords(),
+        fleetService.getRiskAssessments(),
+        fleetService.getSensorReadings(),
+        fleetService.getNotifications(),
+        fleetService.getReports(),
       ]);
 
       if (mounted) {
@@ -94,7 +96,7 @@ export function useFleetData(): FleetDataState {
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [refreshVersion]);
 
   return state;
 }

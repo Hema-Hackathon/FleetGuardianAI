@@ -10,14 +10,17 @@ import { StatusBadge } from "../components/common/StatusBadge";
 import { RiskMap } from "../components/dashboard/RiskMap";
 import { DataTable } from "../components/tables/DataTable";
 import { useFleetData } from "../hooks/useFleetData";
-import { moduleSummaries } from "../routes/navigation";
 import type { Vehicle } from "../types/domain";
 import { formatNumber } from "../utils/format";
 
 const vehicleColumns: ColumnDef<Vehicle>[] = [
   { accessorKey: "id", header: "Vehicle ID" },
   { accessorKey: "type", header: "Vehicle Type" },
-  { accessorKey: "riskLevel", header: "Risk", cell: ({ row }) => <StatusBadge value={row.original.riskLevel} /> },
+  {
+    accessorKey: "riskLevel",
+    header: "Risk",
+    cell: ({ row }) => <StatusBadge value={row.original.riskLevel} />,
+  },
   { accessorKey: "riskScore", header: "Score" },
   { accessorKey: "location", header: "Location" },
 ];
@@ -32,23 +35,53 @@ export function DashboardPage() {
   const topVehicles = [...vehicles].sort((a, b) => b.riskScore - a.riskScore).slice(0, 5);
 
   return (
-    <div>
+    <div className="dashboard-page dashboard-all-in-one">
       <PageHeader
         title="Fleet Operations Dashboard"
         description="Real-time overview of fleet fire risk, operations, alerts, and system readiness."
         actions={<StatusBadge value="Prototype" />}
       />
 
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-        <MetricCard label="Total Vehicles" value={formatNumber(totalVehicles)} helper="Active" icon={Truck} tone="blue" />
-        <MetricCard label="Critical Risk" value={critical} helper="2.2% of fleet" icon={AlertTriangle} tone="red" />
-        <MetricCard label="High Risk" value={high} helper="7.7% of fleet" icon={AlertTriangle} tone="orange" />
-        <MetricCard label="Medium Risk" value={medium} helper="16.8% of fleet" icon={Bell} tone="yellow" />
-        <MetricCard label="Low Risk" value={low} helper="73.3% of fleet" icon={ShieldCheck} tone="green" />
+      <div className="dashboard-kpis grid gap-2 md:grid-cols-2 xl:grid-cols-5">
+        <MetricCard
+          label="Total Vehicles"
+          value={formatNumber(totalVehicles)}
+          helper="Active"
+          icon={Truck}
+          tone="blue"
+        />
+        <MetricCard
+          label="Critical Risk"
+          value={critical}
+          helper="2.2% of fleet"
+          icon={AlertTriangle}
+          tone="red"
+        />
+        <MetricCard
+          label="High Risk"
+          value={high}
+          helper="7.7% of fleet"
+          icon={AlertTriangle}
+          tone="orange"
+        />
+        <MetricCard
+          label="Medium Risk"
+          value={medium}
+          helper="16.8% of fleet"
+          icon={Bell}
+          tone="yellow"
+        />
+        <MetricCard
+          label="Low Risk"
+          value={low}
+          helper="73.3% of fleet"
+          icon={ShieldCheck}
+          tone="green"
+        />
       </div>
 
-      <div className="mt-4 grid gap-4 xl:grid-cols-[1fr_1.25fr_1.8fr]">
-        <SectionCard title="Risk Distribution">
+      <div className="dashboard-main-grid grid min-h-0 gap-2 xl:grid-cols-[1fr_1.25fr_1.8fr] xl:grid-rows-2">
+        <SectionCard title="Risk Distribution" className="h-full overflow-hidden p-3">
           <RiskDonut
             centerLabel={formatNumber(totalVehicles)}
             data={[
@@ -59,78 +92,108 @@ export function DashboardPage() {
             ]}
           />
         </SectionCard>
-        <SectionCard title="Risk Trend (Last 7 Days)">
+        <SectionCard title="Risk Trend (Last 7 Days)" className="h-full overflow-hidden p-3">
           <RiskTrendChart />
         </SectionCard>
-        <SectionCard title="Live Fleet Map">
+        <SectionCard title="Live Fleet Map" className="h-full overflow-hidden p-3">
           <RiskMap vehicles={vehicles} />
         </SectionCard>
-      </div>
 
-      <div className="mt-4 grid gap-4 xl:grid-cols-[1.4fr_1fr_1fr]">
-        <SectionCard title="Top 5 Vehicles by Risk">
+        <SectionCard title="Top 5 Vehicles by Risk" className="h-full overflow-hidden p-2">
           <DataTable data={topVehicles} columns={vehicleColumns} />
         </SectionCard>
-        <SectionCard title={`Active Alerts (${alerts.length})`}>
-          <div className="space-y-3">
+        <SectionCard
+          title={`Active Alerts (${alerts.length})`}
+          className="h-full overflow-hidden p-3"
+        >
+          <div className="dashboard-alerts space-y-1.5">
             {alerts.slice(0, 4).map((alert) => (
-              <div key={alert.id} className="flex items-start gap-3 rounded-md border border-slate-800 bg-slate-950/35 p-3">
-                <AlertTriangle className="mt-0.5 h-5 w-5 text-red-300" />
-                <div className="min-w-0 flex-1">
-                  <div className="font-semibold text-white">{alert.title}</div>
-                  <div className="text-sm text-slate-400">{alert.vehicleId} - {alert.detail}</div>
+              <div
+                key={alert.id}
+                title={alert.detail}
+                className="flex items-center gap-2 rounded-md border border-slate-800 bg-slate-950/35 p-1.5"
+              >
+                <AlertTriangle className="h-4 w-4 shrink-0 text-red-300" />
+                <div className="min-w-0 flex-1 truncate text-xs font-semibold text-white">
+                  {alert.title}
                 </div>
-                <span className="text-xs text-slate-500">{alert.time}</span>
+                <span className="shrink-0 text-[10px] text-slate-400">{alert.vehicleId}</span>
+                <span className="shrink-0 text-[10px] text-slate-500">{alert.time}</span>
               </div>
             ))}
           </div>
         </SectionCard>
-        <SectionCard title="Incident Summary">
+        <SectionCard title="Incident Summary" className="h-full overflow-hidden p-3">
           <IncidentDonut />
         </SectionCard>
       </div>
 
-      <div className="mt-4 grid gap-4 xl:grid-cols-3">
-        <SectionCard title="Maintenance Due">
-          <div className="flex items-center justify-between">
-            <div><div className="text-3xl font-bold text-white">64</div><div className="text-sm text-slate-400">Vehicles</div></div>
-            <Wrench className="h-10 w-10 text-slate-400" />
-          </div>
-          <div className="mt-5 grid grid-cols-3 gap-3 text-center text-sm">
-            <div><div className="text-2xl font-bold text-red-200">18</div><div className="text-slate-400">Overdue</div></div>
-            <div><div className="text-2xl font-bold text-orange-200">26</div><div className="text-slate-400">Due in 7 days</div></div>
-            <div><div className="text-2xl font-bold text-emerald-200">20</div><div className="text-slate-400">Due in 30 days</div></div>
-          </div>
-          <div className="mt-4 text-xs text-slate-500">{maintenanceRecords.length} high-priority maintenance records linked to risk scoring.</div>
-        </SectionCard>
-        <SectionCard title="System Health">
-          <div className="flex items-center gap-3 text-emerald-300"><ShieldCheck className="h-9 w-9" /><span className="text-lg font-semibold">All Systems Operational</span></div>
-          <div className="mt-5 grid grid-cols-4 gap-2 text-center text-xs text-slate-300">
-            {["Data Ingestion", "AI Prediction", "Alert Engine", "Integrations"].map((item) => <div key={item} className="rounded-md border border-slate-800 bg-slate-950/40 p-3"><ShieldCheck className="mx-auto mb-2 h-5 w-5 text-emerald-400" />{item}<div className="mt-1 text-emerald-300">Healthy</div></div>)}
-          </div>
-        </SectionCard>
-        <SectionCard title="Recent Reports">
-          <div className="space-y-3">
-            {reports.slice(0, 3).map((report) => (
-              <div key={report.id} className="flex items-center justify-between rounded-md border border-slate-800 bg-slate-950/35 p-3 text-sm">
-                <span className="flex items-center gap-2 text-slate-200"><FileText className="h-4 w-4 text-slate-400" />{report.name}</span>
-                <span className="text-slate-500">View</span>
+      <div className="dashboard-bottom-grid min-h-0">
+        <div className="dashboard-operations grid h-full min-h-0 gap-2 xl:grid-cols-3">
+          <SectionCard title="Maintenance Due" className="h-full overflow-hidden p-3">
+            <div className="flex items-center justify-between">
+              <div>
+                <span className="text-2xl font-bold text-white">64</span>
+                <span className="ml-2 text-xs text-slate-400">Vehicles</span>
               </div>
-            ))}
-          </div>
-        </SectionCard>
-      </div>
-
-      <SectionCard title="All Modules" className="mt-4">
-        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-          {moduleSummaries.map((module) => (
-            <div key={module.id} className="rounded-md border border-slate-800 bg-slate-950/30 p-3">
-              <div className="flex items-center justify-between gap-2"><div className="font-semibold text-white">{module.name}</div><StatusBadge value={module.status} /></div>
-              <p className="mt-2 text-sm text-slate-400">{module.description}</p>
+              <Wrench className="h-7 w-7 text-slate-400" />
             </div>
-          ))}
+            <div className="mt-2 grid grid-cols-3 gap-2 text-center text-xs">
+              <div>
+                <div className="text-lg font-bold text-red-200">18</div>
+                <div className="text-slate-400">Overdue</div>
+              </div>
+              <div>
+                <div className="text-lg font-bold text-orange-200">26</div>
+                <div className="text-slate-400">7 days</div>
+              </div>
+              <div>
+                <div className="text-lg font-bold text-emerald-200">20</div>
+                <div className="text-slate-400">30 days</div>
+              </div>
+            </div>
+            <div className="mt-2 truncate text-[10px] text-slate-500">
+              {maintenanceRecords.length} priority records linked to risk scoring.
+            </div>
+          </SectionCard>
+
+          <SectionCard title="System Health" className="h-full overflow-hidden p-3">
+            <div className="flex items-center gap-2 text-sm font-semibold text-emerald-300">
+              <ShieldCheck className="h-6 w-6" />
+              All Systems Operational
+            </div>
+            <div className="mt-2 grid grid-cols-4 gap-1 text-center text-[10px] text-slate-300">
+              {["Ingestion", "Prediction", "Alerts", "Integrations"].map((item) => (
+                <div
+                  key={item}
+                  className="rounded-md border border-slate-800 bg-slate-950/40 p-1.5"
+                >
+                  <ShieldCheck className="mx-auto mb-1 h-4 w-4 text-emerald-400" />
+                  {item}
+                  <div className="text-emerald-300">Healthy</div>
+                </div>
+              ))}
+            </div>
+          </SectionCard>
+
+          <SectionCard title="Recent Reports" className="h-full overflow-hidden p-3">
+            <div className="space-y-1.5">
+              {reports.slice(0, 3).map((report) => (
+                <div
+                  key={report.id}
+                  className="flex items-center justify-between rounded-md border border-slate-800 bg-slate-950/35 p-1.5 text-xs"
+                >
+                  <span className="flex min-w-0 items-center gap-2 text-slate-200">
+                    <FileText className="h-3.5 w-3.5 shrink-0 text-slate-400" />
+                    <span className="truncate">{report.name}</span>
+                  </span>
+                  <span className="ml-2 text-slate-500">View</span>
+                </div>
+              ))}
+            </div>
+          </SectionCard>
         </div>
-      </SectionCard>
+      </div>
     </div>
   );
 }

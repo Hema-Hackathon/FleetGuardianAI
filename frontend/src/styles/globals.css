@@ -33,7 +33,13 @@ body {
     radial-gradient(circle at 12% 8%, rgba(37, 99, 235, 0.18), transparent 28%),
     linear-gradient(135deg, #06111f 0%, #071624 45%, #04101c 100%);
   color: hsl(var(--foreground));
-  font-family: Inter, ui-sans-serif, system-ui, Segoe UI, Arial, sans-serif;
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    Segoe UI,
+    Arial,
+    sans-serif;
 }
 
 button,
@@ -60,7 +66,9 @@ textarea {
 .card-surface {
   border: 1px solid rgba(96, 165, 250, 0.18);
   background: linear-gradient(180deg, rgba(15, 33, 54, 0.92), rgba(7, 20, 35, 0.94));
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 14px 32px rgba(0,0,0,0.25);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 14px 32px rgba(0, 0, 0, 0.25);
 }
 
 .grid-lines {
@@ -68,4 +76,479 @@ textarea {
     linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
     linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
   background-size: 40px 40px;
+}
+
+@media (min-width: 1280px) and (min-height: 800px) {
+  .dashboard-page {
+    display: grid;
+    height: calc(100dvh - 8.8125rem);
+    min-height: 0;
+    grid-template-rows: auto auto minmax(0, 1fr) 12rem;
+    gap: 0.5rem;
+    overflow: hidden;
+  }
+
+  .dashboard-all-in-one > div:first-child {
+    margin-bottom: 0;
+    padding-bottom: 0.5rem;
+  }
+
+  .dashboard-kpis .card-surface {
+    padding: 0.5rem;
+  }
+
+  .dashboard-kpis .text-3xl {
+    margin-top: 0.25rem;
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+  }
+
+  .dashboard-kpis .text-sm {
+    font-size: 0.75rem;
+    line-height: 1rem;
+  }
+
+  .dashboard-kpis .h-14.w-14 {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+
+  .dashboard-kpis .h-7.w-7 {
+    height: 1.25rem;
+    width: 1.25rem;
+  }
+
+  .dashboard-main-grid,
+  .dashboard-bottom-grid,
+  .dashboard-operations,
+  .dashboard-main-grid > section,
+  .dashboard-bottom-grid section {
+    min-height: 0;
+  }
+
+  .dashboard-main-grid > section > .mb-4,
+  .dashboard-bottom-grid section > .mb-4 {
+    margin-bottom: 0.25rem;
+  }
+
+  .dashboard-main-grid .h-56,
+  .dashboard-main-grid .h-64,
+  .dashboard-main-grid .h-72 {
+    height: 9.75rem;
+  }
+
+  .dashboard-main-grid .h-44 {
+    height: 6.25rem;
+  }
+
+  .dashboard-main-grid th,
+  .dashboard-main-grid td {
+    padding: 0.1rem 0.4rem;
+    font-size: 0.68rem;
+    line-height: 0.9rem;
+  }
+
+  .dashboard-main-grid th {
+    white-space: nowrap;
+  }
+
+  .dashboard-main-grid section,
+  .dashboard-bottom-grid section {
+    overflow: hidden;
+  }
+
+  .module-page {
+    height: calc(100dvh - 8.8125rem);
+    min-height: 0;
+    gap: 0.5rem;
+    overflow: hidden;
+  }
+
+  .prototype-module-page {
+    display: grid;
+    grid-template-rows: auto auto auto minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .fire-module-page {
+    display: grid;
+    grid-template-rows:
+      auto
+      auto
+      auto
+      minmax(0, 1.24fr)
+      minmax(0, 1fr)
+      minmax(0, 1.02fr);
+  }
+
+  .fire-module-page > div:first-child p {
+    max-width: none;
+    white-space: nowrap;
+    font-size: 0.7rem;
+    line-height: 0.9rem;
+  }
+
+  .fire-module-page > [data-testid="llm-safety-explanation"] {
+    margin-bottom: 0;
+    padding: 0.25rem 0.75rem;
+  }
+
+  .fire-module-page > [data-testid="llm-safety-explanation"] > .mb-1 {
+    margin-bottom: 0;
+  }
+
+  .fire-module-page > [data-testid="llm-safety-explanation"] p {
+    font-size: 0.7rem;
+    line-height: 0.9rem;
+  }
+
+  .fire-module-page > [data-testid="llm-safety-explanation"] > .mt-1 {
+    display: none;
+  }
+
+  .module-page > div:first-child {
+    margin-bottom: 0;
+    padding-bottom: 0.5rem;
+  }
+
+  .prototype-module-page > .mb-5 {
+    margin-bottom: 0;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .prototype-module-page > .mb-5 p {
+    margin-top: 0.125rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+  }
+
+  .module-kpis .card-surface {
+    padding: 0.5rem;
+  }
+
+  .module-kpis .text-3xl {
+    margin-top: 0.25rem;
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+  }
+
+  .module-kpis .text-sm {
+    font-size: 0.75rem;
+    line-height: 1rem;
+  }
+
+  .module-kpis .h-14.w-14 {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+
+  .module-kpis .h-7.w-7 {
+    height: 1.25rem;
+    width: 1.25rem;
+  }
+
+  .module-primary-grid,
+  .module-secondary-grid,
+  .fire-primary-grid,
+  .fire-action-grid,
+  .fire-queue-grid,
+  .module-primary-grid > section,
+  .module-secondary-grid > section,
+  .fire-primary-grid > section,
+  .fire-action-grid > section,
+  .fire-queue-grid > section {
+    min-height: 0;
+  }
+
+  .module-primary-grid > section,
+  .module-secondary-grid > section,
+  .fire-primary-grid > section,
+  .fire-action-grid > section,
+  .fire-queue-grid > section {
+    height: 100%;
+    overflow: hidden;
+    padding: 0.5rem;
+  }
+
+  .module-primary-grid section > .mb-4,
+  .module-secondary-grid section > .mb-4,
+  .fire-primary-grid section > .mb-4,
+  .fire-action-grid section > .mb-4,
+  .fire-queue-grid section > .mb-4 {
+    margin-bottom: 0.25rem;
+  }
+
+  .module-primary-grid .h-64 {
+    height: 12rem;
+  }
+
+  .module-primary-grid th,
+  .module-primary-grid td,
+  .fire-queue-grid th,
+  .fire-queue-grid td {
+    padding: 0.05rem 0.3rem;
+    white-space: nowrap;
+    font-size: 0.62rem;
+    line-height: 0.75rem;
+  }
+
+  .module-secondary-grid .space-y-3 > :not([hidden]) ~ :not([hidden]),
+  .fire-module-page .space-y-3 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 0.25rem;
+  }
+
+  .module-secondary-grid .space-y-3 > div,
+  .fire-action-grid .space-y-3 > div,
+  .fire-queue-grid .space-y-3 > div {
+    padding: 0.3rem;
+  }
+
+  .module-secondary-grid p,
+  .fire-action-grid p,
+  .fire-queue-grid p {
+    margin-top: 0.125rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.7rem;
+    line-height: 0.95rem;
+  }
+
+  .fire-notice {
+    position: fixed;
+    top: 4.75rem;
+    right: 1rem;
+    z-index: 60;
+    max-width: 32rem;
+    margin: 0;
+    padding: 0.75rem;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.4);
+  }
+
+  .fire-primary-grid .mb-4 {
+    margin-bottom: 0.25rem;
+  }
+
+  .fire-primary-grid select {
+    height: 1.5rem;
+    font-size: 0.7rem;
+  }
+
+  .fire-live-ready {
+    display: flex;
+    height: 1.5rem;
+    align-items: center;
+    padding: 0.125rem 0.5rem;
+    font-size: 0.68rem;
+  }
+
+  .circular-risk-score {
+    gap: 0.5rem;
+  }
+
+  .circular-risk-score .risk-score-ring {
+    height: 5rem;
+    width: 5rem;
+    flex: 0 0 auto;
+  }
+
+  .circular-risk-score .risk-score-ring > div {
+    inset: 0.45rem;
+  }
+
+  .circular-risk-score .text-4xl {
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+  }
+
+  .circular-risk-score .space-y-3 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 0.125rem;
+  }
+
+  .circular-risk-score .text-sm {
+    font-size: 0.68rem;
+    line-height: 0.9rem;
+  }
+
+  .fire-primary-grid .mt-5,
+  .fire-primary-grid .mt-4,
+  .fire-primary-grid .mt-3 {
+    margin-top: 0.25rem;
+  }
+
+  .fire-primary-grid .grid-cols-2 > .rounded-md {
+    padding: 0.35rem;
+    font-size: 0.68rem;
+    line-height: 0.9rem;
+  }
+
+  .sensor-tile {
+    height: 3rem;
+    overflow: hidden;
+    padding: 0.2rem;
+  }
+
+  .sensor-tile .text-2xl {
+    font-size: 0.9rem;
+    line-height: 1.1rem;
+  }
+
+  .sensor-tile .text-xs {
+    font-size: 0.58rem;
+    line-height: 0.75rem;
+  }
+
+  .sensor-tile svg {
+    height: 0.65rem;
+    margin-top: 0.125rem;
+  }
+
+  .fire-primary-grid .grid.gap-3 {
+    gap: 0.2rem;
+  }
+
+  .risk-assessment-score {
+    padding: 0.1rem;
+  }
+
+  .risk-assessment-score .text-sm,
+  .risk-assessment-score .text-xs {
+    font-size: 0.6rem;
+    line-height: 0.75rem;
+  }
+
+  .fire-primary-grid .text-5xl {
+    margin-top: 0.125rem;
+    font-size: 1.25rem;
+    line-height: 1.4rem;
+  }
+
+  .risk-assessment-score .inline-flex {
+    margin-top: 0.125rem;
+    padding: 0.15rem 0.35rem;
+    font-size: 0.6rem;
+  }
+
+  .risk-assessment-score > .mt-3 {
+    margin-top: 0.125rem;
+  }
+
+  .fire-primary-grid .space-y-3 .text-sm {
+    font-size: 0.68rem;
+    line-height: 0.9rem;
+  }
+
+  .fire-primary-grid .space-y-3 .mb-1 {
+    margin-bottom: 0.125rem;
+  }
+
+  .fire-primary-grid .space-y-3 .h-2 {
+    height: 0.25rem;
+  }
+
+  .fire-action-grid form {
+    display: grid;
+    gap: 0.125rem;
+  }
+
+  .fire-action-grid form .grid {
+    gap: 0.125rem;
+  }
+
+  .fire-action-grid form label {
+    display: grid;
+    gap: 0.05rem;
+    font-size: 0.6rem;
+    line-height: 0.65rem;
+  }
+
+  .fire-action-grid form label > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 0;
+  }
+
+  .fire-action-grid form input,
+  .fire-action-grid form select,
+  .fire-action-grid form button {
+    height: 1.125rem;
+    font-size: 0.6rem;
+  }
+
+  .fire-action-grid > section {
+    padding: 0.25rem;
+  }
+
+  .fire-action-grid .space-y-3 > div {
+    min-height: 0;
+    padding: 0.2rem;
+  }
+
+  .fire-action-grid form.space-y-3 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 0.125rem;
+  }
+
+  .fire-action-grid .space-y-3 .text-xs {
+    font-size: 0.58rem;
+    line-height: 0.7rem;
+  }
+
+  .fire-action-grid .space-y-3 .font-semibold {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.68rem;
+    line-height: 0.8rem;
+  }
+
+  .fire-queue-grid .space-y-3 {
+    font-size: 0.62rem;
+  }
+
+  .fire-queue-grid .grid-cols-3 > div {
+    padding: 0.15rem;
+  }
+
+  .fire-queue-grid .grid-cols-3 svg {
+    width: 0.75rem;
+    height: 0.75rem;
+    margin-bottom: 0;
+  }
+
+  .fire-queue-grid .mt-2 {
+    margin-top: 0.125rem;
+  }
+
+  .fire-queue-grid .h-2 {
+    height: 0.2rem;
+  }
+}
+
+/* Keep the four Fire Prevention KPI cards compact at every viewport height. */
+.fire-kpis .card-surface {
+  min-height: 5.25rem;
+  padding: 0.55rem 0.75rem;
+}
+
+.fire-kpis .card-surface > div {
+  gap: 0.5rem;
+}
+
+.fire-kpis .text-3xl {
+  margin-top: 0.125rem;
+  font-size: 1.25rem;
+  line-height: 1.65rem;
+}
+
+.fire-kpis .text-sm {
+  font-size: 0.72rem;
+  line-height: 1rem;
+}
+
+.fire-kpis .h-14.w-14 {
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: none;
+}
+
+.fire-kpis .h-7.w-7 {
+  width: 1rem;
+  height: 1rem;
 }

@@ -1,14 +1,12 @@
 ﻿import {
   Activity,
   BarChart3,
-  Bot,
   Building2,
   ClipboardCheck,
   Flame,
   Gauge,
   LayoutDashboard,
   LucideIcon,
-  SearchCheck,
   Settings,
   ShieldCheck,
   Siren,
@@ -31,11 +29,9 @@ export const navItems: NavItem[] = [
   { name: "Live Monitoring", path: "/monitoring", icon: Activity, status: "Prototype", description: "Live telemetry, route status, and alert feed." },
   { name: "AI Fire Prevention", path: "/fire-prevention", icon: Flame, status: "Implemented", description: "Flagship AI risk prediction and prevention module." },
   { name: "Incident Response", path: "/incident-response", icon: Siren, status: "Prototype", description: "Emergency workflows and active incident coordination." },
-  { name: "AI Investigation", path: "/investigation", icon: SearchCheck, status: "Prototype", description: "Root cause analysis and investigation workspace." },
   { name: "Maintenance Intelligence", path: "/maintenance", icon: Wrench, status: "Prototype", description: "Predictive maintenance and component risk planning." },
   { name: "Compliance & Standards", path: "/compliance", icon: ShieldCheck, status: "Prototype", description: "CMVR/AIS compliance scoring and standards catalogue." },
   { name: "Analytics & Reporting", path: "/analytics", icon: BarChart3, status: "Prototype", description: "Fleet trends, reports, and executive analytics." },
-  { name: "AI Assistant", path: "/ai-assistant", icon: Bot, status: "Prototype", description: "Conversational fleet safety assistant preview." },
   { name: "Administration", path: "/administration", icon: Settings, status: "Prototype", description: "Users, roles, rules, thresholds, and integrations." },
 ];
 

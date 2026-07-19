@@ -15,11 +15,9 @@ export function AppRoutes() {
         <Route path="monitoring" element={<PrototypeModulePage modulePath="/monitoring" />} />
         <Route path="fire-prevention" element={<FirePreventionPage />} />
         <Route path="incident-response" element={<PrototypeModulePage modulePath="/incident-response" />} />
-        <Route path="investigation" element={<PrototypeModulePage modulePath="/investigation" />} />
         <Route path="maintenance" element={<PrototypeModulePage modulePath="/maintenance" />} />
         <Route path="compliance" element={<PrototypeModulePage modulePath="/compliance" />} />
         <Route path="analytics" element={<PrototypeModulePage modulePath="/analytics" />} />
-        <Route path="ai-assistant" element={<PrototypeModulePage modulePath="/ai-assistant" />} />
         <Route path="administration" element={<PrototypeModulePage modulePath="/administration" />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>

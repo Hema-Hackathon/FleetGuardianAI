@@ -1,7 +1,7 @@
 ﻿import type { AlertSeverity, ModuleStatus, RiskLevel } from "../../types/domain";
 import { cn } from "../../utils/cn";
 
-type BadgeValue = RiskLevel | AlertSeverity | ModuleStatus | "Live Ready" | "Healthy" | "Ongoing" | "Resolved" | "Under Response" | "Overdue" | "Due Soon" | "Scheduled" | "Closed" | "Info";
+type BadgeValue = RiskLevel | AlertSeverity | ModuleStatus | "Live Ready" | "Guarded" | "Healthy" | "Ongoing" | "Resolved" | "Under Response" | "Overdue" | "Due Soon" | "Scheduled" | "Closed" | "Info";
 
 const styles: Record<string, string> = {
   Critical: "border-red-400/30 bg-red-500/15 text-red-200",
@@ -13,6 +13,7 @@ const styles: Record<string, string> = {
   Implemented: "border-emerald-400/30 bg-emerald-500/20 text-emerald-100",
   Planned: "border-blue-400/30 bg-blue-500/15 text-blue-100",
   "Live Ready": "border-emerald-400/30 bg-emerald-500/15 text-emerald-100",
+  Guarded: "border-sky-400/30 bg-sky-500/15 text-sky-100",
   Healthy: "border-emerald-400/30 bg-emerald-500/15 text-emerald-100",
   Ongoing: "border-red-400/30 bg-red-500/15 text-red-200",
   "Under Response": "border-orange-400/30 bg-orange-500/15 text-orange-200",
